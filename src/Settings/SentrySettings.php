@@ -1,18 +1,18 @@
 <?php
 
-namespace VendorName\Skeleton\Settings;
+namespace Astrogoat\Sentry\Settings;
 
 use Helix\Lego\Settings\AppSettings;
 
-class SkeletonSettings extends AppSettings
+class SentrySettings extends AppSettings
 {
     public function description(): string
     {
-        return 'Interact with Skeleton.';
+        return 'Interact with Sentry.';
     }
 
     public static function group(): string
     {
-        return 'skeleton';
+        return 'sentry';
     }
 }

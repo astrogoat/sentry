@@ -11,7 +11,5 @@ const mix = require('laravel-mix');
  |
  */
 
-mix
-
-mix.js('resources/js/skeleton.js', 'public/js')
-    .postCss('resources/css/skeleton.css', 'public/css', [require("tailwindcss")])
+mix.postCss('resources/css/sentry.css', 'public/css', [require("tailwindcss")])
+    // .js('resources/js/sentry.js', 'public/js')
