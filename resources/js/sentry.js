@@ -1,1 +1,3 @@
-// Javascript file for sentry
+import * as Sentry from "@sentry/browser";
+
+window.Sentry = Sentry;
