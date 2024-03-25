@@ -2,9 +2,9 @@
 
 namespace Astrogoat\Sentry\Tests;
 
+use Astrogoat\Sentry\SentryServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Astrogoat\Sentry\SentryServiceProvider;
 
 class TestCase extends Orchestra
 {

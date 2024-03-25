@@ -2,17 +2,16 @@
 
 namespace Astrogoat\Sentry;
 
-use Exception;
+use Astrogoat\Sentry\Middleware\AddAdditionalSentryInfo;
+use Astrogoat\Sentry\Settings\SentrySettings;
 use Helix\Lego\Apps\App;
-use Helix\Lego\LegoManager;
-use Illuminate\Routing\Router;
-use Spatie\LaravelPackageTools\Package;
-use Helix\Lego\Providers\RouteServiceProvider;
 use Helix\Lego\Apps\Services\IncludeBackendViews;
 use Helix\Lego\Apps\Services\IncludeFrontendViews;
+use Helix\Lego\LegoManager;
+use Helix\Lego\Providers\RouteServiceProvider;
+use Illuminate\Routing\Router;
+use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Astrogoat\Sentry\Settings\SentrySettings;
-use Astrogoat\Sentry\Middleware\AddAdditionalSentryInfo;
 
 class SentryServiceProvider extends PackageServiceProvider
 {

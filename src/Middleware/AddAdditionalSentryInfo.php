@@ -2,9 +2,9 @@
 
 namespace Astrogoat\Sentry\Middleware;
 
+use Astrogoat\Sentry\Settings\SentrySettings;
 use Closure;
 use Illuminate\Http\Request;
-use Astrogoat\Sentry\Settings\SentrySettings;
 use Symfony\Component\HttpFoundation\Response;
 
 class AddAdditionalSentryInfo
