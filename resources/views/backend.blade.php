@@ -12,14 +12,6 @@
                 dsn: "{{ config('sentry.dsn') }}",
                 environment: "{{ app()->environment() }}",
 
-                beforeSend(event, hint) {
-                    // Check if it is an exception, and if so, show the report dialog
-                    if (event.exception && event.event_id) {
-                        Sentry.showReportDialog({ eventId: event.event_id });
-                    }
-
-                    return event;
-                },
                 integrations: [
                     Sentry.feedbackIntegration({
                         // Additional SDK configuration goes in here, for example:
