@@ -12,7 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix
-    .postCss('resources/css/backend.css', 'css', [require("tailwindcss")])
+    // .postCss('resources/css/backend.css', 'css', [require("tailwindcss")])
     .js('resources/js/sentry.js', 'js')
     .version()
     .setPublicPath('public/');

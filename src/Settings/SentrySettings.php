@@ -3,13 +3,20 @@
 namespace Astrogoat\Sentry\Settings;
 
 use Helix\Lego\Settings\AppSettings;
-use Astrogoat\Sentry\Settings\Peripherals\CheckRequirements;
+use Helix\Lego\Apps\Requirement;
 
 class SentrySettings extends AppSettings
 {
-    protected array $peripherals = [
-        CheckRequirements::class,
-    ];
+    public function requirements(): array
+    {
+        return [
+            new Requirement(
+                title: 'Data Source Name (DNS)',
+                passIf: filled(config('sentry.dsn')),
+                failedMessage: 'A DNS configuration must be defined in "config/sentry.php".',
+            ),
+        ];
+    }
 
     public function description(): string
     {

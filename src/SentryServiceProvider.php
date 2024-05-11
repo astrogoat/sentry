@@ -2,7 +2,6 @@
 
 namespace Astrogoat\Sentry;
 
-use Livewire\Livewire;
 use Astrogoat\Sentry\Middleware\AddAdditionalSentryInfo;
 use Astrogoat\Sentry\Settings\SentrySettings;
 use Helix\Lego\Apps\App;
@@ -13,7 +12,6 @@ use Helix\Lego\Providers\RouteServiceProvider;
 use Illuminate\Routing\Router;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Astrogoat\Sentry\Settings\Peripherals\CheckRequirements;
 
 class SentryServiceProvider extends PackageServiceProvider
 {
@@ -53,8 +51,6 @@ class SentryServiceProvider extends PackageServiceProvider
                 __DIR__.'/../public' => public_path('vendor/sentry/'),
             ], 'sentry-assets');
         }
-
-        Livewire::component('astrogoat.sentry.settings.peripherals.check-requirements', CheckRequirements::class);
     }
 
     public function configurePackage(Package $package): void
