@@ -13,6 +13,13 @@ You can install the package via composer:
 composer require astrogoat/sentry
 ```
 
+In the `register` method of your `App\Exceptions\Handler` class add the following:
+```php
+$this->reportable(function (Throwable $e) {
+    Astrogoat\Sentry\Sentry::captureException($e);
+});
+```
+
 ## Testing
 
 ```bash
