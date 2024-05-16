@@ -7,6 +7,10 @@ use Helix\Lego\Apps\Requirement;
 
 class SentrySettings extends AppSettings
 {
+    public bool $capture_frontend_javascript_errors;
+    public bool $capture_backend_javascript_errors;
+    public bool $show_backend_report_widget;
+
     public function requirements(): array
     {
         return [
@@ -15,6 +19,33 @@ class SentrySettings extends AppSettings
                 passIf: filled(config('sentry.dsn')),
                 failedMessage: 'A DNS configuration must be defined in "config/sentry.php".',
             ),
+        ];
+    }
+
+    public function labels(): array
+    {
+        return [
+            'capture_frontend_javascript_errors' => 'Capture frontend Javascript errors',
+            'capture_backend_javascript_errors' => 'Capture backend Javascript errors',
+        ];
+    }
+
+    public function sections(): array
+    {
+        return [
+            [
+                'title' => 'Error capturing',
+                'properties' => [
+                    'capture_frontend_javascript_errors',
+                    'capture_backend_javascript_errors'
+                ]
+            ],
+            [
+                'title' => 'Bug reporting',
+                'properties' => [
+                    'show_backend_report_widget',
+                ],
+            ]
         ];
     }
 
