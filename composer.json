@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "astrogoat/strata": "^0.6.7",
+        "astrogoat/strata": "^0.7.0",
         "illuminate/contracts": "^8.37 || ^9.9|^10.0",
         "sentry/sentry-laravel": "^4.3",
         "spatie/laravel-package-tools": "^1.4.3"
