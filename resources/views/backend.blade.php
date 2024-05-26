@@ -4,6 +4,13 @@
     && Astrogoat\Sentry\Settings\SentrySettings::isEnabled()
     && ($settings->capture_backend_javascript_errors === true || $settings->show_backend_report_widget === true)
 )
+    <style>
+        #sentry-feedback {
+            /* Put the button under the media library overlay as it covers the "Insert" button */
+            --z-index: 49;
+        }
+    </style>
+
     @php $user = auth()->user(); @endphp
     <script src="{{ asset('vendor/sentry/js/sentry.js') }}" defer></script>
     <script>
