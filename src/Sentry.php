@@ -12,7 +12,7 @@ class Sentry
 {
     public static function captureException(Throwable $throwable): void
     {
-        if (SentrySettings::isEnabled()) {
+        if (tenancy()->initialized && SentrySettings::isEnabled()) {
             if ($throwable instanceof ClientException) {
                 configureScope(function (Scope $scope) use ($throwable): void {
                     $scope->setContext('Guzzle', [
