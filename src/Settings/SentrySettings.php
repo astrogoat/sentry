@@ -5,6 +5,7 @@ namespace Astrogoat\Sentry\Settings;
 use Illuminate\Validation\Rule;
 use Helix\Lego\Settings\AppSettings;
 use Helix\Lego\Apps\Requirement;
+use Astrogoat\Sentry\Settings\Peripherals\ConfigurationValues;
 
 class SentrySettings extends AppSettings
 {
@@ -13,6 +14,10 @@ class SentrySettings extends AppSettings
     public bool $enable_backend_browser;
     public bool $enable_backend_browser_tracing;
     public bool $show_backend_report_widget;
+
+    protected array $peripherals = [
+        ConfigurationValues::class,
+    ];
 
     public function rules(): array
     {

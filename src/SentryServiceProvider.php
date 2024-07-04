@@ -2,6 +2,7 @@
 
 namespace Astrogoat\Sentry;
 
+use Livewire\Livewire;
 use Astrogoat\Sentry\Middleware\AddAdditionalSentryInfo;
 use Astrogoat\Sentry\Settings\SentrySettings;
 use Helix\Lego\Apps\App;
@@ -12,6 +13,7 @@ use Helix\Lego\Providers\RouteServiceProvider;
 use Illuminate\Routing\Router;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Astrogoat\Sentry\Settings\Peripherals\ConfigurationValues;
 
 class SentryServiceProvider extends PackageServiceProvider
 {
@@ -45,6 +47,8 @@ class SentryServiceProvider extends PackageServiceProvider
     public function bootingPackage()
     {
         resolve(Router::class)->pushMiddlewareToGroup(RouteServiceProvider::MIDDLEWARE_GROUP_FRONTEND, AddAdditionalSentryInfo::class);
+
+        Livewire::component('astrogoat.sentry.settings.peripherals.configuration-values', ConfigurationValues::class);
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
