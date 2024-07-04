@@ -1,9 +1,7 @@
-@php $settings = app(Astrogoat\Sentry\Settings\SentrySettings::class) @endphp
-@if(
-    app()->bound('sentry')
-    && Astrogoat\Sentry\Settings\SentrySettings::isEnabled()
-    && ($settings->capture_backend_javascript_errors === true || $settings->show_backend_report_widget === true)
-)
+@php
+    $settings = app(Astrogoat\Sentry\Settings\SentrySettings::class)
+@endphp
+@if(app()->bound('sentry') && $settings->enabled && $settings->enable_backend_browser === true)
     <style>
         #sentry-feedback {
             /* Put the button under the media library overlay as it covers the "Insert" button */
@@ -38,7 +36,7 @@
                         }),
                     @endif
 
-                    @if($settings->capture_backend_javascript_errors === true)
+                    @if($settings->enable_backend_browser_tracing === true)
                         Sentry.browserTracingIntegration(),
                     @endif
                 ],

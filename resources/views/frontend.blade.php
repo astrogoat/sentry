@@ -1,8 +1,7 @@
-@if(
-    app()->bound('sentry')
-    && Astrogoat\Sentry\Settings\SentrySettings::isEnabled()
-    && app(Astrogoat\Sentry\Settings\SentrySettings::class)->capture_frontend_javascript_errors === true
-)
+@php
+    $settings = app(Astrogoat\Sentry\Settings\SentrySettings::class)
+@endphp
+@if(app()->bound('sentry') && $settings->enabled && $settings->enable_frontend_browser === true)
     <script src="{{ asset('vendor/sentry/js/sentry.js') }}" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -11,7 +10,7 @@
                 environment: "{{ app()->environment() }}",
 
                 integrations: [
-                    @if($settings->capture_frontend_javascript_errors === true)
+                    @if($settings->enable_frontend_browser_tracing === true)
                         Sentry.browserTracingIntegration(),
                     @endif
                 ],

@@ -2,14 +2,35 @@
 
 namespace Astrogoat\Sentry\Settings;
 
+use Illuminate\Validation\Rule;
 use Helix\Lego\Settings\AppSettings;
 use Helix\Lego\Apps\Requirement;
 
 class SentrySettings extends AppSettings
 {
-    public bool $capture_frontend_javascript_errors;
-    public bool $capture_backend_javascript_errors;
+    public bool $enable_frontend_browser;
+    public bool $enable_frontend_browser_tracing;
+    public bool $enable_backend_browser;
+    public bool $enable_backend_browser_tracing;
     public bool $show_backend_report_widget;
+
+    public function rules(): array
+    {
+        return [
+            'enable_frontend_browser_tracing' => Rule::prohibitedIf(! $this->enable_frontend_browser),
+            'enable_backend_browser_tracing' => Rule::prohibitedIf(! $this->enable_backend_browser),
+            'show_backend_report_widget' => Rule::prohibitedIf(! $this->enable_backend_browser),
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'enable_frontend_browser_tracing.prohibited' => 'Frontend browser extension must be enabled for tracing to be reported.',
+            'enable_backend_browser_tracing.prohibited' => 'Backend browser extension must be enabled for tracing to be reported.',
+            'show_backend_report_widget.prohibited' => 'Backend browser extension must be enabled for the report widget to be shown.',
+        ];
+    }
 
     public function requirements(): array
     {
@@ -25,8 +46,8 @@ class SentrySettings extends AppSettings
     public function labels(): array
     {
         return [
-            'capture_frontend_javascript_errors' => 'Capture frontend Javascript errors',
-            'capture_backend_javascript_errors' => 'Capture backend Javascript errors',
+            'enable_frontend_browser' => 'Enable frontend browser integration',
+            'enable_backend_browser' => 'Enable backend browser integration',
         ];
     }
 
@@ -34,18 +55,20 @@ class SentrySettings extends AppSettings
     {
         return [
             [
-                'title' => 'Error capturing',
+                'title' => 'Frontend Browser Integration',
                 'properties' => [
-                    'capture_frontend_javascript_errors',
-                    'capture_backend_javascript_errors'
+                    'enable_frontend_browser',
+                    'enable_frontend_browser_tracing',
                 ]
             ],
             [
-                'title' => 'Bug reporting',
+                'title' => 'Backend Browser Integration',
                 'properties' => [
+                    'enable_backend_browser',
+                    'enable_backend_browser_tracing',
                     'show_backend_report_widget',
-                ],
-            ]
+                ]
+            ],
         ];
     }
 
